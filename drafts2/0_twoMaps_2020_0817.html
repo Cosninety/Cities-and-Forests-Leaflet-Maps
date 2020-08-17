@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" class="gr__cosninety_github_io" >
+
+<head >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Spatial Mapping</title>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""></script>
+
+  <!-- <script src="leaflet-master-src.js"></script>
+  <script src="L.Map.Sync.js"></script> -->
+  <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js"
+     integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ=="
+     crossorigin=""></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+
+
+
+<div class = "containerMain">
+
+<div id="citiesHead">
+  <h1 class = "headertext centerText" >CITIES</h1>
+</div>
+
+<div id="andHead" >
+  <h1 class = "headertext centerText">+</h1>
+</div>
+
+<div  id="forestHead">
+  <h1 class = "headertext centerText">FORESTS</h1>
+</div>
+
+<!-- https://stackoverflow.com/questions/15987140/how-to-check-if-an-item-is-selected-from-an-html-drop-down-list -->
+<div id="dropdown">
+<select id="cityChoice" onclick="myFunctionCity()">
+    <option value="selectcity">---SELECT CITY---</option>
+    <option value="mexico">Mexico</option>
+    <option value="newyork">New York</option>
+    <option value="uaxactun">Uaxatun, Guatemala</option>
+</select>
+</div>
+
+<div id="dropdown2">
+<select id="forestChoice"  onclick="myFunctionForest()">
+    <option value="selectforest">---SELECT FOREST---</option>
+    <option value="mexico">Mexico</option>
+    <option value="newyork">New York</option>
+    <option value="uaxactun">Uaxatun, Guatemala</option>
+</select>
+</div>
+
+
+<div id="dropdownBasemap">
+<select id="basemapChoice"  onclick="myFunctionBasemap()">
+    <option value="selectBasemap">---SELECT BASEMAP---</option>
+    <option value="basic">BASIC</option>
+    <option value="satellite">SATELLITE</option>
+    <option value="illustrated">ILLUSTRATED</option>
+    <option value="nighttime">LIGHTS AT NIGHT</option>
+</select>
+</div>
+
+
+<div id="mapdiv"></div>
+<div id="mapdiv2"></div>
+
+
+</div>
+
+
+<script>
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
+
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+// https://leaflet-extras.github.io/leaflet-providers/preview/
+
+var nighttime =L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level{maxZoom}/{z}/{y}/{x}.jpg', {
+maxZoom: 8
+});
+
+// var nighttime = 'NASAGIBS.ViirsEarthAtNight2012'
+
+var satellite = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
+var illustrated = 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png';
+
+var basic ='http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+
+baseMaps = {basic:basic, illustrated:illustrated, nighttime:nighttime, satellite:satellite};
+
+
+
+var layer1 = L.tileLayer(baseMaps['satellite']);
+
+var layer2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+
+
+
+      //nyc
+  		var map1 = L.map('mapdiv', {
+  		    layers: layer1,
+  		    center: [40.712,-74.006] ,
+  		    zoom: 10
+  		});
+
+
+      // guatemala
+  		var map2 = L.map('mapdiv2', {
+  		    // layers: L.tileLayer(baseMaps['basic']),
+          layers: nighttime,
+  		    center: [17.394, -89.633],
+  		    zoom: 10
+  		    // zoomControl: false
+  		});
+
+  console.log(map2['_layers']['48']['_url'])
+    // console.log(map2['_layers'])
+
+      var cityCoord = {mexico: [19.432,-99.133], newyork:[40.712,-74.006], uaxactun:[17.394, -89.633] };
+
+      function myFunctionCity() {
+       var ddl = document.getElementById("cityChoice");
+       var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+       if ( selectedValue != 'selectcity'){
+        map1.panTo(new L.LatLng(cityCoord[selectedValue][0],cityCoord[selectedValue][1]));}
+        resetfunc();
+     }
+
+
+     function myFunctionForest() {
+      var ddl = document.getElementById("forestChoice");
+      var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+      if ( selectedValue != 'selectforest'){
+       map2.panTo(new L.LatLng(cityCoord[selectedValue][0],cityCoord[selectedValue][1]));
+      resetfunc();
+     }
+    }
+
+    map1.on("zoomend", function (e) {
+        map1zoom =  map1.getZoom();
+        console.log("ZOOMEND", map1zoom)
+        map2.setZoom(map1zoom);
+       });
+
+    map2.on("zoomend", function (e) {
+        map2zoom =  map2.getZoom();
+        console.log("ZOOMEND", map2zoom)
+        map1.setZoom(map2zoom);
+       });
+
+
+    function resetfunc(){
+      map1.setZoom(10);
+      map2.setZoom(10);
+    }
+
+     map2.on("zoomend", function (e) {
+         map1zoom =  map2.getZoom();
+         console.log("ZOOMEND", map1zoom)
+         map2.setZoom(map1zoom);
+        });
+
+     map1.on("zoomend", function (e) {
+         map2zoom =  map1.getZoom();
+         console.log("ZOOMEND", map2zoom)
+         map2.setZoom(map2zoom);
+        });
+
+// Basemap Dropdown Selection
+function myFunctionBasemap(){
+
+  var ddl = document.getElementById("basemapChoice");
+  var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+  if ( selectedValue != 'selectBasemap'){
+    console.log(baseMaps[selectedValue])
+    console.log(selectedValue)
+
+    map1.removeLayer(layer1);
+    map2.removeLayer(layer2);
+
+
+    layer1 = baseMaps[selectedValue];
+    layer2 = baseMaps[selectedValue];
+
+    map1.addLayer(L.tileLayer(layer1));
+    map2.addLayer(L.tileLayer(layer2));
+
+  }
+}
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

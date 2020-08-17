@@ -1,0 +1,107 @@
+#about {
+  height:600px;
+  background-color: black;
+}
+
+#nav {
+  display:block;
+  margin: auto;
+  background-color: black;
+  padding-left: 2%;
+  overflow: visible;
+  float: left
+}
+
+#header1 {
+  margin: auto;
+  font-weight: bold;
+  padding: 5px;
+  min-height: 75px;
+  overflow:hidden;
+  background-color: black;
+}
+
+#mapdiv {
+  /* height:500px; */
+  min-height: 500px;
+  background-color: blue;
+}
+
+#side_panel {
+  margin: auto;
+  padding: 5px;
+  /* min-height: 25px; */
+  min-height: 500px;
+  background-color: black;
+}
+
+#side_panel_2 {
+  min-height: 500px;
+  background-color: black;
+}
+
+#footer{
+  margin: auto;
+  padding: 5px;
+  min-height: 25px;
+
+  background-color: black;
+}
+
+.btn {
+  color: white;
+  font-weight: bold;
+}
+
+.btn-primary{
+  background-color: blue
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image{
+  /* height: 140px; */
+  margin: auto;
+  padding: 5px;
+  min-height: 25px;
+
+  background-color: black;
+}
+
+
+.text-center{
+  color: white;
+  margin: auto;
+  font-weight: bold;
+  padding: 7px;
+  min-height: 25px;
+
+}
+
+.general_body {
+  height:600px;
+  background-color: blue;
+}
+
+/* adapted from Advanced Styling and Responsive Design Code with Me Navigation Coursera lecture  */
+@media all and (min-width:900px){
+
+  #side_panel {
+    margin: auto;
+    padding: 5px;
+    float: left
+    min-height: 500px;
+    background-color: black;
+  }
+
+  #mapdiv {
+    /* height:500px; */
+    min-height: 500px;
+    background-color: blue;
+  }
+  
+}

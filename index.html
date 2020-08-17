@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="gr__cosninety_github_io" >
+
+<head >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>CitiesAndForests</title>
+
+
+
+  <!-- leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+  integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+  crossorigin=""></script>
+
+  <script src="https://unpkg.com/esri-leaflet@2.5.0/dist/esri-leaflet.js"
+     integrity="sha512-ucw7Grpc+iEQZa711gcjgMBnmd9qju1CICsRaryvX7HJklK0pGl/prxKvtHwpgm5ZHdvAil7YPxI1oWPOWK3UQ=="
+     crossorigin=""></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=" crossorigin="anonymous"></script>
+
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+
+  <link rel="stylesheet" href="css/styles.css">
+
+
+</head>
+<body>
+
+
+
+<div class = "containerMain">
+
+<div id="citiesHead">
+  <h1 class = "headertext centerText" ><b>CITIES</b></h1>
+</div>
+
+<div id="andHead" >
+  <h1 class = "headertext centerText"><b>+</b></h1>
+</div>
+
+<div  id="forestHead">
+  <h1 class = "headertext centerText"><b>FORESTS</b></h1>
+</div>
+
+<!-- https://stackoverflow.com/questions/15987140/how-to-check-if-an-item-is-selected-from-an-html-drop-down-list -->
+
+<!-- multi-level dropdown https://www.jquery-az.com/boots/demo.php?ex=6.0_6-->
+<div id="dropdown">
+<select id="cityChoice" data-live-search="true" onclick="myFunctionCity()">
+<!-- <select id="cityChoice" onclick="myFunctionCity()"> -->
+    <option value="selectcity">---SELECT CITY---</option>
+    <option value="detroit">Detroit, USA</option>
+    <option value="mexico">Mexico City</option>
+    <option value="newyork">New York City, USA</option>
+    <option value="oslo">Oslo, Norway</option>
+    <option value="quito">Quito, Equador</option>
+</select>
+</div>
+
+<div id="dropdown2">
+<select id="forestChoice"  onclick="myFunctionForest()">
+    <option value="selectforest">---SELECT FOREST---</option>
+    <option value="amazon">Amazon, South America</option>
+      <option value="chemerong">Chemerong, Malasia</option>
+      <option value="congo">Congo, Africa</option>
+      <option value="daintree">Daintree, Australia</option>
+      <option value="uaxactun">Uaxactun, Guatemala</option>
+      <option value="valdivian">Valdivian, South America</option>
+</select>
+</div>
+
+
+
+
+
+
+<div id="mapdiv"></div>
+<div id="mapdiv2"></div>
+
+
+</div>
+
+<script>
+
+// function myFunction() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
+
+// Close the dropdown if the user clicks outside of it
+// window.onclick = function(event) {
+//   if (!event.target.matches('.dropbtn')) {
+//     var dropdowns = document.getElementsByClassName("dropdown-content");
+//     var i;
+//     for (i = 0; i < dropdowns.length; i++) {
+//       var openDropdown = dropdowns[i];
+//       if (openDropdown.classList.contains('show')) {
+//         openDropdown.classList.remove('show');
+//       }
+//     }
+//   }
+// }
+
+// https://leaflet-extras.github.io/leaflet-providers/preview/
+// Basemaps
+var nighttime =L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level{maxZoom}/{z}/{y}/{x}.jpg', {
+maxZoom: 8
+});
+var nighttime2 =L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default//GoogleMapsCompatible_Level{maxZoom}/{z}/{y}/{x}.jpg', {
+maxZoom: 8
+});
+var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+var illustrated = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png');
+var basic = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+var layer2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+var satellite2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+var illustrated2 = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png');
+var basic2 = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+// https://gis.stackexchange.com/questions/130471/how-to-switch-base-layer-programmatically-in-mapbox-leaflet
+// https://esri.github.io/esri-leaflet/examples/switching-basemaps.html
+
+
+var baseMaps = {
+    "Basic Map": basic,
+    // "Illustrated": illustrated,
+    "Lights at Night (zoom out to use)": nighttime,
+    "Satellite": satellite
+};
+
+// nighttime,
+var map1 = L.map('mapdiv', {
+    layers: [basic, nighttime, satellite],
+    center: [40.712,-74.006] ,
+    zoom: 10
+});
+
+L.control.layers(baseMaps).addTo(map1);
+
+var baseMaps2 = {
+    "Basic Map": basic2,
+    // "Illustrated": illustrated2,
+    "Lights at Night (zoom out to use)": nighttime2,
+    "Satellite": satellite2
+};
+
+// Default Guatemala map
+var map2 = L.map('mapdiv2', {
+    layers: [basic2, nighttime2, satellite2],
+    center: [17.394, -89.633],
+    zoom: 10
+});
+
+L.control.layers(baseMaps2).addTo(map2);
+
+
+
+var cityCoord = {detroit: [42.331, -83.045], mexico: [19.432,-99.133], newyork:[40.712,-74.006], oslo: [59.913,10.752], quito: [-0.222471,-78.520500] };
+
+
+var forestCoord =  {amazon: [3.4653, -62.2159],chemerong:[4.659396,103.008209] , congo: [5.9175, 12.5484], daintree:[-16.168681, 145.388710],uaxactun:[17.394, -89.633] , valdivian: [-41.326387, -73.665700]}
+
+
+// https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_js_dropdown
+// default dropdown for CITIES
+var ddl = document.getElementById("cityChoice");
+var selectedValue = ddl.options[ddl.selectedIndex].value;
+console.log(selectedValue);
+ddl.value ='newyork';
+
+// default dropdown for FORESTS
+var ddl = document.getElementById("forestChoice");
+var selectedValue = ddl.options[ddl.selectedIndex].value;
+console.log(selectedValue);
+ddl.value ='uaxactun';
+
+
+// dropdown menu CITIES
+function myFunctionCity() {
+   var ddl = document.getElementById("cityChoice");
+   var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+   if ( selectedValue != 'selectcity'){
+    map1.panTo(new L.LatLng(cityCoord[selectedValue][0],cityCoord[selectedValue][1]));}
+    resetfunc();
+}
+
+// dropdown menu FORESTS
+function myFunctionForest() {
+    var ddl = document.getElementById("forestChoice");
+    var selectedValue = ddl.options[ddl.selectedIndex].value;
+
+    if ( selectedValue != 'selectforest'){
+     map2.panTo(new L.LatLng(forestCoord[selectedValue][0],forestCoord[selectedValue][1]));
+    resetfunc();
+}
+}
+
+function resetfunc(){
+    map1.setZoom(10);
+    map2.setZoom(10);
+}
+
+// match scale
+map1.on("zoomend", function (e) {
+    map1zoom =  map1.getZoom();
+    console.log("ZOOMEND", map1zoom)
+    map2.setZoom(map1zoom);
+ });
+
+map2.on("zoomend", function (e) {
+    map2zoom =  map2.getZoom();
+    console.log("ZOOMEND", map2zoom)
+    map1.setZoom(map2zoom);
+ });
+
+map2.on("zoomend", function (e) {
+   map1zoom =  map2.getZoom();
+   console.log("ZOOMEND", map1zoom)
+   map2.setZoom(map1zoom);
+  });
+
+map1.on("zoomend", function (e) {
+   map2zoom =  map1.getZoom();
+   console.log("ZOOMEND", map2zoom)
+   map2.setZoom(map2zoom);
+  });
+
+
+// Basemap Dropdown Selection
+// function myFunctionBasemap(){
+//
+//   var ddl = document.getElementById("basemapChoice");
+//   var selectedValue = ddl.options[ddl.selectedIndex].value;
+//   if ( selectedValue != 'selectBasemap'){
+//     console.log(baseMaps[selectedValue])
+//     console.log(selectedValue)
+//   }
+// }
+
+
+</script>
+
+
+</body>
+</html>

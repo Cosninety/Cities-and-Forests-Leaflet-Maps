@@ -1,0 +1,170 @@
+body{
+  background-color: black;
+}
+
+
+#headdiv{
+  display:grid;
+  grid-template-columns: repeat(9,1fr);
+  grid-template-rows: auto auto;
+  grid-row-gap:10px;
+  width: 100%;
+  margin: auto;
+}
+/* div >  */
+.headertext{
+  color: antiquewhite;
+}
+
+
+
+
+
+.containerMain{
+  display: grid;
+  grid-template-columns: repeat(9,1fr);
+  grid-template-rows: auto auto auto  ;
+  grid-row-gap:10px;
+  width: 100vw;
+  margin:auto;
+  margin-top: 25px;
+  background-color: blueviolet;
+  align: center;
+}
+
+#citiesHead{
+  grid-column: 2/5;
+  grid-row: 1/span 1;
+}
+
+#andHead{
+  grid-column: 5/span 1;
+  grid-row: 1/span 1;
+}
+
+#forestHead{
+  grid-column: 6/9;
+  grid-row: 1/span 1;
+}
+
+.centerText{
+text-align: center;
+}
+
+#dropdownBasemap{
+  grid-column: 5/span 1;
+  grid-row: 2/span 1;
+  height: 30px;
+}
+
+#dropdown2{
+  grid-column: 6/span 1;
+  grid-row: 2/span 1;
+  height: 30px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+#dropdown{
+  grid-column: 2/span 1;
+  grid-row: 2/span 1;
+  height: 30px;
+  /* padding-left: 0px */
+}
+
+#mapdiv {
+  grid-column: 2/5;
+  grid-row: 3/span 1;
+  min-height: 400px;
+  background-color: blue;
+}
+
+
+#mapdiv2 {
+  grid-column: 6/9;
+  grid-row: 3/span 1;
+  min-height: 400px;
+  background-color: blue;
+}
+
+/* #one{
+  background-color: aliceblue;
+  grid-column: 1/span 1;
+  grid-row: 1/span 1;
+}
+#two{
+  background-color: antiquewhite;
+  grid-column: 2/span 1;
+  grid-row: 1/span 1;
+}
+#three{
+  background-color: aqua;
+  grid-column: 3/span 1;
+  grid-row: 1/span 1;
+} */
+
+
+#footer{
+  margin: auto;
+  padding: 5px;
+  min-height: 25px;
+  background-color: black;
+}
+
+
+
+/* adapted from Advanced Styling and Responsive Design Code with Me Navigation Coursera lecture  */
+/* I am not using mobile first principles, hence I am basing media query of max-width instead of min width...I also relied more heavily ob=n bootstrap for responsive design */
+@media all and (max-width:600px){
+
+
+
+  /* #mapdiv {
+    display: block;
+    margin: auto;
+    background-color: black;
+    width: 90%
+  } */
+
+}
+
+
+/* https://www.w3schools.com/howto/howto_js_dropdown.asp */
+/* .dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;} */
