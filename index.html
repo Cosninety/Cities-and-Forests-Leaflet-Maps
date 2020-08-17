@@ -37,8 +37,6 @@
 </head>
 <body>
 
-
-
 <div class = "containerMain">
 
 <div id="citiesHead">
@@ -50,7 +48,7 @@
 </div>
 
 <div  id="forestHead">
-  <h1 class = "headertext centerText"><b>FORESTS v.16</b></h1>
+  <h1 class = "headertext centerText"><b>FORESTS v.18</b></h1>
 </div>
 
 <!-- https://stackoverflow.com/questions/15987140/how-to-check-if-an-item-is-selected-from-an-html-drop-down-list -->
@@ -80,11 +78,6 @@
 </select>
 </div>
 
-
-
-
-
-
 <div id="mapdiv"></div>
 <div id="mapdiv2"></div>
 
@@ -92,24 +85,6 @@
 </div>
 
 <script>
-
-// function myFunction() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
-
-// Close the dropdown if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn')) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// }
 
 // https://leaflet-extras.github.io/leaflet-providers/preview/
 // Basemaps
@@ -162,8 +137,6 @@ var map2 = L.map('mapdiv2', {
 
 L.control.layers(baseMaps2).addTo(map2);
 
-
-
 var cityCoord = {detroit: [42.331, -83.045], mexico: [19.432,-99.133], newyork:[40.712,-74.006], oslo: [59.913,10.752], quito: [-0.222471,-78.520500] };
 
 
@@ -174,13 +147,13 @@ var forestCoord =  {amazon: [3.4653, -62.2159],chemerong:[4.659396,103.008209] ,
 // default dropdown for CITIES
 var ddl = document.getElementById("cityChoice");
 var selectedValue = ddl.options[ddl.selectedIndex].value;
-console.log(selectedValue);
+// console.log(selectedValue);
 ddl.value ='newyork';
 
 // default dropdown for FORESTS
 var ddl = document.getElementById("forestChoice");
 var selectedValue = ddl.options[ddl.selectedIndex].value;
-console.log(selectedValue);
+// console.log(selectedValue);
 ddl.value ='uaxactun';
 
 
@@ -213,39 +186,27 @@ function resetfunc(){
 // match scale
 map1.on("zoomend", function (e) {
     map1zoom =  map1.getZoom();
-    console.log("ZOOMEND", map1zoom)
+    // console.log("ZOOMEND", map1zoom)
     map2.setZoom(map1zoom);
  });
 
 map2.on("zoomend", function (e) {
     map2zoom =  map2.getZoom();
-    console.log("ZOOMEND", map2zoom)
+    // console.log("ZOOMEND", map2zoom)
     map1.setZoom(map2zoom);
  });
 
 map2.on("zoomend", function (e) {
    map1zoom =  map2.getZoom();
-   console.log("ZOOMEND", map1zoom)
+   // console.log("ZOOMEND", map1zoom)
    map2.setZoom(map1zoom);
   });
 
 map1.on("zoomend", function (e) {
    map2zoom =  map1.getZoom();
-   console.log("ZOOMEND", map2zoom)
+   // console.log("ZOOMEND", map2zoom)
    map2.setZoom(map2zoom);
   });
-
-
-// Basemap Dropdown Selection
-// function myFunctionBasemap(){
-//
-//   var ddl = document.getElementById("basemapChoice");
-//   var selectedValue = ddl.options[ddl.selectedIndex].value;
-//   if ( selectedValue != 'selectBasemap'){
-//     console.log(baseMaps[selectedValue])
-//     console.log(selectedValue)
-//   }
-// }
 
 
 </script>
