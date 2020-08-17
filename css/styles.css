@@ -90,6 +90,7 @@ text-align: center;
  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
  cursor: pointer;
  color: black;
+
 }
 
 #forestChoice{
@@ -129,7 +130,36 @@ text-align: center;
 
 
 
-/* @media all and (max-width:600px){
+  #mapdiv2 {
+    min-height: 400px;
+    max-width: 45vw;
+  }
+
+  /* #dropdown{
+    max-width: 35vw;
+  }
+
+  #dropdown2{
+    height: 25px;
+    padding-bottom: 5px;
+    font-size: 11px;
+  } */
+
+  #cityChoice{
+   width:40vw;
+  }
+
+  #forestChoice{
+   width:40vw;
+  }
+
+
+
+
+
+/*
+
+@media all and (max-width:600px){
 
   .headertext{
     font-size: 30px;
@@ -139,7 +169,7 @@ text-align: center;
   #mapdiv {
     min-height: 400px;
     max-width: 45vw;
-  } */
+  }
 
   #mapdiv2 {
     min-height: 400px;
@@ -170,4 +200,4 @@ text-align: center;
    width:40vw;
   }
 
-}
+} */
