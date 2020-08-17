@@ -130,6 +130,7 @@ text-align: center;
 
 
 /* @media all and (max-width:600px){
+
   .headertext{
     font-size: 30px;
     margin-bottom: 15px;
@@ -138,8 +139,7 @@ text-align: center;
   #mapdiv {
     min-height: 400px;
     max-width: 45vw;
-
-  }
+  } */
 
   #mapdiv2 {
     min-height: 400px;
@@ -170,4 +170,4 @@ text-align: center;
    width:40vw;
   }
 
-} */
+}
