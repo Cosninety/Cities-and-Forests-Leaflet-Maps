@@ -111,8 +111,11 @@ text-align: center;
   grid-row: 3/span 1;
   /* min-height: 500px;
   width: 100% */
-  min-height: 400px;
-  max-width: 45vw;
+  /* min-height: 400px;
+  max-width: 45vw; */
+  min-height: 500px;
+  width: 100%
+  /* min-width: 40vw; */
 }
 
 #mapdiv2 {
@@ -122,17 +125,16 @@ text-align: center;
 
   grid-column: 6/9;
   grid-row: 3/span 1;
-  /* min-height: 500px;
-  width: 100% */
-  min-height: 400px;
-  max-width: 45vw;
+  min-height: 500px;
+  width: 100%
+  /* min-width: 40vw; */
 }
 
 
-/* #mapdiv2 {
+#mapdiv2 {
   min-height: 400px;
   max-width: 45vw;
-} */
+}
 
   /* #dropdown{
     max-width: 35vw;
