@@ -34,6 +34,7 @@ body{
   margin:auto;
   /* background-color: blueviolet; */
   align: center;
+  text-align: center;
 }
 
 #citiesHead{
@@ -122,31 +123,33 @@ text-align: center;
 
 
 
-
-
-
-
 @media all and (max-width:600px){
 
+.containerMain {
+   text-align: center;
+   margin: auto;
+   width 80%;
+}
+
   .headertext{
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 15px;
   }
 
   #mapdiv {
     min-height: 400px;
-    max-width: 45vw;
+    max-width: 40vw;
   }
 
   #mapdiv2 {
     min-height: 400px;
-    max-width: 45vw;
+    max-width: 40vw;
   }
 
   #dropdown{
     height: 25px;
     padding-bottom: 5px;
-    max-width: 35vw;
+    max-width: 30vw;
     font-size: 11px;
 
   }
@@ -154,17 +157,18 @@ text-align: center;
   #dropdown2{
     height: 25px;
     padding-bottom: 5px;
+    max-width: 30vw;
     font-size: 11px;
   }
 
   #cityChoice{
-   padding: 4px 0px;
-   width:40vw;
+   padding: 2px 1px;
+   max-width:40vw;
   }
 
   #forestChoice{
-   padding: 4px 0px;
-   width:40vw;
+   padding: 2px 1px;
+   max-width:40vw;
   }
 
 }
