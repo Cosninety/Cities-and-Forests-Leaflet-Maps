@@ -30,8 +30,8 @@
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <link rel="stylesheet" type="text/css" href="css/html5reset.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="css/html5reset.css" rel="stylesheet" type="text/css" media= "all">
+  <link href="css/styles.css" rel="stylesheet" media= "all">
 
 
 </head>
@@ -48,15 +48,14 @@
 </div>
 
 <div  id="forestHead">
-  <h1 class = "headertext centerText"><b>FORESTS v.1</b></h1>
+  <h1 class = "headertext centerText"><b>FORESTS v.1a</b></h1>
 </div>
 
 <!-- https://stackoverflow.com/questions/15987140/how-to-check-if-an-item-is-selected-from-an-html-drop-down-list -->
 
 <!-- multi-level dropdown https://www.jquery-az.com/boots/demo.php?ex=6.0_6-->
 <div id="dropdown">
-<select id="cityChoice" data-live-search="true" onclick="myFunctionCity()">
-<!-- <select id="cityChoice" onclick="myFunctionCity()"> -->
+<select id="cityChoice" data-live-search="true" class="form-control" onclick="myFunctionCity()">
     <option value="selectcity">---SELECT CITY---</option>
     <option value="detroit">Detroit, USA</option>
     <option value="mexico">Mexico City</option>
@@ -67,8 +66,8 @@
 </div>
 
 <div id="dropdown2">
-<select id="forestChoice"  onclick="myFunctionForest()">
-    <option value="selectforest">---SELECT FOREST---</option>
+<select id="forestChoice" class="form-control"  onclick="myFunctionForest()">
+    <option value="selectforest" >---SELECT FOREST---</option>
     <option value="amazon">Amazon, South America</option>
       <option value="chemerong">Chemerong, Malasia</option>
       <option value="congo">Congo, Africa</option>
