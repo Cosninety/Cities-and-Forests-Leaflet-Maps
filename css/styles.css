@@ -152,7 +152,7 @@ text-align: center;
 
   #dropdown{
     height: 25px;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
     max-width: 30vw;
     font-size: 11px;
 
@@ -160,18 +160,18 @@ text-align: center;
 
   #dropdown2{
     height: 25px;
-    padding-bottom: 5px;
+    /* padding-bottom: 5px; */
     max-width: 30vw;
     font-size: 11px;
   }
 
   #cityChoice{
-   padding: 2px 1px;
+   padding: 5px 1px;
    max-width:40vw;
   }
 
   #forestChoice{
-   padding: 2px 1px;
+   padding: 5px 1px;
    max-width:40vw;
   }
 
