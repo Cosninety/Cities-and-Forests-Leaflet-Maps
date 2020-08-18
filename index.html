@@ -9,7 +9,6 @@
   <title>CitiesAndForests</title>
 
 
-
   <!-- leaflet -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -24,8 +23,6 @@
      crossorigin=""></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=" crossorigin="anonymous"></script>
 
   <!-- bootstrap -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -48,14 +45,14 @@
 </div>
 
 <div  id="forestHead">
-  <h1 class = "headertext centerText"><b>FORESTS v.1d</b></h1>
+  <h1 class = "headertext centerText"><b>FORESTS v.1e</b></h1>
 </div>
 
 <!-- https://stackoverflow.com/questions/15987140/how-to-check-if-an-item-is-selected-from-an-html-drop-down-list -->
 
 <!-- multi-level dropdown https://www.jquery-az.com/boots/demo.php?ex=6.0_6-->
 <div id="dropdown">
-<select id="cityChoice" data-live-search="true" class="form-control" onclick="myFunctionCity()">
+<select id="cityChoice" class='browser-default' onclick="myFunctionCity()">
     <option value="selectcity">---SELECT CITY---</option>
     <option value="detroit">Detroit, USA</option>
     <option value="mexico">Mexico City</option>
@@ -66,7 +63,8 @@
 </div>
 
 <div id="dropdown2">
-<select id="forestChoice" class="form-control"  onclick="myFunctionForest()">
+<select id="forestChoice" class='browser-default' onclick="myFunctionForest()">
+<!-- <select id="forestChoice" class="form-control"  onclick="myFunctionForest()"> -->
     <option value="selectforest" >---SELECT FOREST---</option>
     <option value="amazon">Amazon, South America</option>
       <option value="chemerong">Chemerong, Malasia</option>
